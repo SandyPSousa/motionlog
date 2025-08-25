@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Data // Anotação do Lombok para gerar Getters, Setters, toString, etc.
-@Entity // Anotação do JPA para indicar que esta classe é uma entidade do banco de dados
+@Data
+@Entity
 public class Usuario {
 
     @Id
@@ -16,7 +16,7 @@ public class Usuario {
 
     private String nome;
 
-    @Column(unique = true) // O email deve ser único
+    @Column(unique = true)
     private String email;
 
     private String senha;

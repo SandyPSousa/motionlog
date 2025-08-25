@@ -14,6 +14,6 @@ public class AtividadeFisica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome; // Ex: "Caminhada", "Corrida", "Ciclismo"
+    private String nome;
     private String descricao;
 }

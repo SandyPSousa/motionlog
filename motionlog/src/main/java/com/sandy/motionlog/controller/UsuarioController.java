@@ -12,34 +12,30 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/usuarios") // Define o endpoint base para este controlador
-@CrossOrigin(origins = "*") // Permite requisições de qualquer origem (importante para o React)
+@RequestMapping("/api/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    // Endpoint para criar um novo usuário (Cadastro de Usuário)
     @PostMapping
     public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
         Usuario savedUsuario = usuarioService.save(usuario);
         return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
     }
 
-    // Endpoint para listar todos os usuários
     @GetMapping
     public List<Usuario> getAll() {
         return usuarioService.findAll();
     }
 
-    // Endpoint para buscar um usuário por ID
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable Long id) {
         Optional<Usuario> usuario = usuarioService.findById(id);
         return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Endpoint para deletar um usuário por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         usuarioService.deleteById(id);
